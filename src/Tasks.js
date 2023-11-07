@@ -1,4 +1,11 @@
-import { View, Text, TextInput, Button, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  ScrollView,
+  FlatList,
+} from "react-native";
 import React, { useState } from "react";
 
 const Tasks = () => {
@@ -25,19 +32,30 @@ const Tasks = () => {
         />
         <Button onPress={handleAddTaskButton} title="Add Task" />
       </View>
-      <View>
-        <Text style={styles.border}></Text>
-        <Text style={styles.textTitle}>Your Tasks : </Text>
-        <View>
-          <ScrollView>
+
+      <Text style={styles.border}></Text>
+      <Text style={styles.textTitle}>Your Tasks : </Text>
+
+      <FlatList
+        data={taskList}
+        renderItem={({ item, index }) => {
+          return (
+            <Text style={styles.taskItem}>
+              {index + 1} : {item}
+            </Text>
+          );
+        }}
+        keyExtractor={(item, index) => {
+          return index;
+        }}
+      />
+      {/* <ScrollView>
             {taskList?.map((taskItem, index) => (
               <Text style={styles.taskItem} key={index}>
                 {taskItem}
               </Text>
             ))}
-          </ScrollView>
-        </View>
-      </View>
+          </ScrollView> */}
     </View>
   );
 };
