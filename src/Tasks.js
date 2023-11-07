@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput, Button, ScrollView } from "react-native";
 import React, { useState } from "react";
 
 const Tasks = () => {
@@ -29,11 +29,13 @@ const Tasks = () => {
         <Text style={styles.border}></Text>
         <Text style={styles.textTitle}>Your Tasks : </Text>
         <View>
-          {taskList?.map((taskItem, index) => (
-            <Text style={styles.taskItem} key={index}>
-              {taskItem}
-            </Text>
-          ))}
+          <ScrollView>
+            {taskList?.map((taskItem, index) => (
+              <Text style={styles.taskItem} key={index}>
+                {taskItem}
+              </Text>
+            ))}
+          </ScrollView>
         </View>
       </View>
     </View>
